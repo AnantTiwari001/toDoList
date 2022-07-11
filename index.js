@@ -17,14 +17,17 @@ let list= [{
 }]
 
 document.getElementsByTagName('body')
-
-let editBtns= document.getElementsByClassName('edit');
-for(var i=0; i<editBtns.length; i++){
-    editBtns[i].addEventListener('click', editf)
+function cEdit(){
+    let editBtns= document.getElementsByClassName('edit');
+    for(var i=0; i<editBtns.length; i++){
+        editBtns[i].addEventListener('click', editf)
+    }
 }
-let deleteBtns= document.getElementsByClassName('delete');
-for(var i=0; i<deleteBtns.length; i++){
-    deleteBtns[i].addEventListener('click', deletef)
+function cDelete(){
+    let deleteBtns= document.getElementsByClassName('delete');
+    for(var i=0; i<deleteBtns.length; i++){
+        deleteBtns[i].addEventListener('click', deletef)
+    }
 }
 
 function deletef(){
@@ -43,3 +46,13 @@ function ask(){
     let pass ={tittle: tittle, description: description};
     return pass;
 }
+
+function adding(){
+    let cardClone=document.querySelector('.todoItem').cloneNode(true)
+    document.body.appendChild(cardClone);
+    cDelete();
+    cEdit();
+} 
+
+cEdit();
+cDelete();
