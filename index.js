@@ -13,14 +13,18 @@ function cDelete() {
     deleteBtns[i].addEventListener("click", deletef);
   }
 }
+var itemd;// Just to access it in the console
 
 function deletef() {
-  let item = JSON.parse(localStorage.getItem("list"));
-  var removeNo= parseInt(this.parentElement.parentElement.children[3].innerText);
+  itemd = JSON.parse(localStorage.getItem("list"));
+  let removeNo= parseInt(this.parentElement.parentElement.children[3].innerText);
 
-  item.splice(removeNo,1);
+  itemd.splice(removeNo,1);
+  let stringified= JSON.stringify(itemd)
+  console.log(stringified)
+  // console.log(itemd, JSON.parse(localStorage.list))
   localStorage.clear();
-  localStorage.setItem('list', item);
+  localStorage.setItem('list', stringified);
   
   this.parentElement.parentElement.remove();
   updateId();
@@ -30,6 +34,14 @@ function editf() {
   let ans = ask();
   this.parentElement.parentElement.children[0].innerText = ans.tittle;
   this.parentElement.parentElement.children[1].innerText = ans.description;
+  let removeNo= parseInt(this.parentElement.parentElement.children[3].innerText);
+  itemd = JSON.parse(localStorage.getItem("list"));
+  itemd[removeNo].title=ans.tittle;
+  itemd[removeNo].desc=ans.description;
+  console.log(itemd)
+  let stringified=JSON.stringify(itemd);
+  localStorage.clear();
+  localStorage.setItem('list', stringified);
 }
 
 function ask() {
