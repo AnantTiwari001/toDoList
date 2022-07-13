@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .todoItem {
+            padding: 13px;
+            background-color: darkorchid;
+            width: 50%;
+            margin: auto;
+            position: relative;
+        }
+
+        .todoItem:hover .options {
+            display: initial;
+        }
+
+        .options {
+            position: absolute;
+            top: 25%;
+            right: 5%;
+            display: none;
+        }
+
+        .btn {
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            /* padding: 3px; */
+            border-radius: 50%;
+            background-color: rgb(188, 123, 221);
+        }
+
+        .add {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+        }
+
+        .id {
+            display: none;
+        }
+    </style>
+    <title>Todo List</title>
+</head>
+
+<body>
+    <!-- first talking about the idea so the input will we through the prompt
+    and the will be a  div for each todo item that is the class, each of which contains
+    a heading, a description, and delete, edit buttons that will be shown on hover position of relative the 
+    container  -->
+    <div style="display: none;">
+
+        <div class="todoItem">
+            <h2>Just a sample</h2>
+            <p>Just a sample</p>
+            <div class="options">
+                <span class="material-symbols-outlined btn edit">edit</span>
+                <br>
+                <span class="material-symbols-outlined btn delete">delete</span>
+            </div>
+            <span class="id"></span>
+        </div>
+    </div>
+    <button class="add" onclick="adding(event)">Add</button>
+    <script src="index.js"></script>
+</body>
+
+</html>
