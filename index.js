@@ -103,5 +103,3 @@ updateId();
 
 cEdit();
 cDelete();
-
-// to get the first synatx/sample element out of the way
