@@ -14,20 +14,18 @@ function cDelete() {
   }
 }
 var itemd;// Just to access it in the console
-
+var zero;
 function deletef() {
   itemd = JSON.parse(localStorage.getItem("list"));
   let removeNo= parseInt(this.parentElement.parentElement.children[3].innerText);
-
   itemd.splice(removeNo,1);
   let stringified= JSON.stringify(itemd)
-  console.log(stringified)
-  // console.log(itemd, JSON.parse(localStorage.list))
   localStorage.clear();
   localStorage.setItem('list', stringified);
   
   this.parentElement.parentElement.remove();
   updateId();
+  nothingToShow();
 }
 
 function editf() {
@@ -38,7 +36,6 @@ function editf() {
   itemd = JSON.parse(localStorage.getItem("list"));
   itemd[removeNo].title=ans.tittle;
   itemd[removeNo].desc=ans.description;
-  console.log(itemd)
   let stringified=JSON.stringify(itemd);
   localStorage.clear();
   localStorage.setItem('list', stringified);
@@ -52,7 +49,6 @@ function ask() {
 }
 
 function adding() {
-  console.log("adding");
   let cardClone = document.querySelector(".todoItem").cloneNode(true);
   document.body.appendChild(cardClone);
   let item = JSON.parse(localStorage.getItem("list"));
@@ -60,7 +56,7 @@ function adding() {
   item = JSON.stringify(item);
   localStorage.clear();
   localStorage.setItem("list", item);
-  console.log(item);
+  nothingToShow();
   cDelete();
   cEdit();
   updateId();
@@ -70,15 +66,12 @@ function addingInitial(title, desc) {
   document.body.appendChild(cardClone);
   cardClone.children[0].innerText = title;
   cardClone.children[1].innerText = desc;
+  return cardClone;
 }
 
 function local() {
   let item = JSON.parse(localStorage.getItem("list"));
-  // console.log(item)
-  if (!item) {
-    document.querySelector("h2").innerText = "";
-    document.querySelector("p").innerText = "Nothing to show here!";
-  }
+  nothingToShow();
   for (let i = 0; i < item.length; i++) {
     addingInitial(item[i].title, item[i].desc);
   }
@@ -90,6 +83,20 @@ function updateId() {
     array[i].children[3].innerText = i - 1;
   }
 }
+var test;
+function nothingToShow() {
+  let item = JSON.parse(localStorage.getItem("list"));
+  if (item.length===0) {
+    test=addingInitial('','Nothing to show here!');
+  }else{
+    try {
+      test.remove()
+    } catch (error) {
+      console.log('not the first adding here')
+    }
+  }
+}
+
 
 local();
 updateId();
